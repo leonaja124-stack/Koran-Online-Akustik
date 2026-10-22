@@ -1,0 +1,522 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gema Pelajar Digital - Edisi Khusus Prestasi Akustik 11A</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        newspaper: {
+                            bg: '#fbf9f5',
+                            card: '#f4efe6',
+                            border: '#dcd5c9',
+                            text: '#1c1917',
+                            accent: '#851e1e'
+                        },
+                        sepia: {
+                            bg: '#f3e8d2',
+                            card: '#e8d8b8',
+                            border: '#cbb68d',
+                            text: '#3b2f21',
+                            accent: '#8c431d'
+                        }
+                    },
+                    fontFamily: {
+                        header: ['Cinzel', 'serif'],
+                        body: ['Merriweather', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Print Styling */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; color: black !important; }
+            .newspaper-container { shadow: none !important; border: none !important; width: 100% !important; max-width: 100% !important; }
+        }
+        
+        /* Audio visualizer animation */
+        @keyframes barPulse {
+            0%, 100% { height: 6px; }
+            50% { height: 24px; }
+        }
+        .animate-bar-1 { animation: barPulse 1s infinite ease-in-out; }
+        .animate-bar-2 { animation: barPulse 1.2s infinite ease-in-out 0.2s; }
+        .animate-bar-3 { animation: barPulse 0.8s infinite ease-in-out 0.4s; }
+        .animate-bar-4 { animation: barPulse 1.1s infinite ease-in-out 0.1s; }
+        .animate-bar-5 { animation: barPulse 0.9s infinite ease-in-out 0.3s; }
+
+        /* Drop cap styling */
+        .dropcap::first-letter {
+            font-family: 'Cinzel', serif;
+            float: left;
+            font-size: 3.5rem;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 8px;
+            padding-bottom: 4px;
+            font-weight: 700;
+            color: #851e1e;
+        }
+    </style>
+</head>
+<body id="appBody" class="bg-newspaper-bg text-newspaper-text font-body transition-colors duration-300 min-h-screen">
+
+    <!-- Top Action Bar (No Print) -->
+    <header class="no-print sticky top-0 z-50 bg-stone-900 text-white shadow-md px-4 py-3">
+        <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-3 font-sans text-sm">
+            <div class="flex items-center space-x-3">
+                <span class="bg-red-700 text-white text-xs font-bold px-2.5 py-1 rounded-sm uppercase tracking-wider">Tugas Bahasa Indonesia</span>
+                <span class="text-stone-300 hidden md:inline">| Kelas 11A</span>
+            </div>
+            
+            <div class="flex items-center space-x-2 md:space-x-4">
+                <!-- Theme Switcher -->
+                <div class="flex bg-stone-800 p-1 rounded-lg text-xs">
+                    <button onclick="setTheme('modern')" id="btn-modern" class="px-2.5 py-1 rounded text-white bg-red-800 font-medium transition">Modern</button>
+                    <button onclick="setTheme('sepia')" id="btn-sepia" class="px-2.5 py-1 rounded text-stone-300 hover:text-white transition">Sepia</button>
+                    <button onclick="setTheme('dark')" id="btn-dark" class="px-2.5 py-1 rounded text-stone-300 hover:text-white transition">Gelap</button>
+                </div>
+
+                <!-- Print Button -->
+                <button onclick="window.print()" class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded flex items-center gap-2 transition font-medium text-xs">
+                    <i class="fa-solid fa-print">window</i> Cetak / Simpan PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Newspaper Container -->
+    <div class="max-w-5xl mx-auto my-4 md:my-8 px-4 sm:px-6">
+        <div id="newspaperCard" class="bg-newspaper-bg border-2 border-stone-800 p-6 md:p-10 shadow-2xl relative transition-colors duration-300">
+            
+            <!-- Newspaper Header / Masthead -->
+            <div class="border-b-4 border-double border-stone-800 pb-6 mb-6">
+                <!-- Sub Header Info -->
+                <div class="flex flex-col sm:flex-row justify-between items-center text-xs font-sans uppercase tracking-widest border-b border-stone-400 pb-2 mb-4 gap-2 text-stone-600 dark:text-stone-400">
+                    <div><span>Edisi Khusus Unjuk Prestasi</span> &bull; <span>Jumat, Juni 2026</span></div>
+                    <div><span>Manokwari, Indonesia</span></div>
+                    <div><span>Harga: GRATIS (TUGAS SEKOLAH)</span></div>
+                </div>
+
+                <!-- Main Title -->
+                <div class="text-center my-4">
+                    <h1 class="font-header text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-stone-900 uppercase leading-none mb-2 dark:text-stone-100">
+                        GEMA PELAJAR
+                    </h1>
+                    <div class="text-xs sm:text-sm font-sans tracking-widest uppercase text-stone-600 dark:text-stone-300 font-semibold">
+                        Jurnalistik Digital Siswa SMA &bull; Portal Berita Aktual & Terpercaya
+                    </div>
+                </div>
+
+                <!-- Metadata Row -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2 pt-4 border-t-2 border-stone-800 text-xs font-sans text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 p-3 rounded">
+                    <div><strong>Wartawan / Penulis:</strong> Syafika (Kelas 11A)</div>
+                    <div><strong>Narasumber:</strong> Adrianus Boas Uner (12M)</div>
+                    <div><strong>Mata Pelajaran:</strong> Bahasa Indonesia</div>
+                </div>
+            </div>
+
+            <!-- Audio Player Widget (Interactive) -->
+            <div class="no-print mb-8 bg-stone-900 text-white p-4 rounded-xl shadow-lg border border-stone-700">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4 w-full md:w-auto">
+                        <button id="playBtn" onclick="toggleAudio()" class="w-12 h-12 bg-red-700 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xl transition shrink-0 shadow-md">
+                            <i id="playIcon" class="fa-solid fa-play ml-1"></i>
+                        </button>
+                        <div>
+                            <div class="font-sans font-bold text-sm text-amber-400 flex items-center gap-2">
+                                <i class="fa-solid fa-microphone text-xs"></i> Rekaman Wawancara Asli (Simulasi)
+                            </div>
+                            <div class="text-xs text-stone-300 font-sans">Syafika memawancarai Kak Boas seputar Lomba Akustik</div>
+                        </div>
+                    </div>
+
+                    <!-- Audio Visualizer / Status -->
+                    <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                        <div id="audioVisualizer" class="hidden flex items-end space-x-1 h-6 px-2">
+                            <span class="w-1 bg-red-500 animate-bar-1 rounded-full"></span>
+                            <span class="w-1 bg-red-400 animate-bar-2 rounded-full"></span>
+                            <span class="w-1 bg-red-600 animate-bar-3 rounded-full"></span>
+                            <span class="w-1 bg-red-300 animate-bar-4 rounded-full"></span>
+                            <span class="w-1 bg-red-500 animate-bar-5 rounded-full"></span>
+                        </div>
+                        <span id="audioTimer" class="text-xs font-mono bg-stone-800 px-2.5 py-1 rounded border border-stone-700">00:00 / 02:45</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Headline Article Header -->
+            <div class="mb-8">
+                <div class="inline-block bg-red-900 text-white font-sans text-xs font-bold px-3 py-1 uppercase tracking-wider mb-2">
+                    Laporan Utama / Headline
+                </div>
+                <h2 class="font-header text-2xl sm:text-4xl font-bold leading-tight text-stone-900 dark:text-stone-100 mb-3">
+                    TIM AKUSTIK SEKOLAH HARUMKAN NAMA LEMBAGA: SABET JUARA KABUPATEN DAN MELANGKAH KE TINGKAT PROVINSI
+                </h2>
+                <p class="font-sans text-stone-600 dark:text-stone-400 italic text-sm sm:text-base border-l-4 border-red-800 pl-4 py-1">
+                    "Kerja keras melampaui tantangan penyatuan nada dan instrumental membuahkan hasil manis bagi lima talenta muda sekolah kita di ajang bergengsi."
+                </p>
+            </div>
+
+            <!-- Main Layout Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Main Content (2 Columns on large screen) -->
+                <div class="lg:col-span-2 space-y-6">
+                    
+                    <!-- Headline Article Body (5W+1H Style) -->
+                    <article class="text-justify leading-relaxed border-b border-stone-300 dark:border-stone-700 pb-6">
+                        <p class="dropcap mb-4">
+                            <strong>REDDOORS</strong> &mdash; Suasana haru dan bangga menyelimuti komunitas sekolah setelah Tim Akustik berhasil mengamankan gelar juara dalam ajang Lomba Akustik Tingkat SMA se-Kabupaten yang diselenggarakan pada hari Kamis pertengahan Juni 2026 di Reddoors. Kemenangan gemilang ini sekaligus mengunci tiket emas bagi tim untuk melaju mewakili kabupaten ke kompetisi tingkat Provinsi.
+                        </p>
+                        <p class="mb-4">
+                            Tim unggulan ini diperkuat oleh lima talenta berbakat dari kelas 12, yaitu <strong>Daniel Krey (12B)</strong>, <strong>Marcelino Marei (12A)</strong>, <strong>Juloi Sinai (12M)</strong>, <strong>Ones Bab (12E)</strong>, serta <strong>Adrianus Boas Uner (12M)</strong>. Kombinasi keharmonisan vokal dan instrumen yang mereka suguhkan berhasil memikat perhatian para juri dan menyisihkan peserta dari berbagai sekolah pesaing.
+                        </p>
+                        <p class="mb-4">
+                            Dalam sesi wawancara khusus bersama siswi kelas 11A, Syafika, Adrianus Boas Uner atau yang akrab disapa Kak Boas mengungkapkan rasa bersyukur dan bahagianya. Menurutnya, membawa nama baik sekolah hingga tingkat kabupaten adalah tanggung jawab besar yang berhasil dituntaskan dengan penuh kebanggaan.
+                        </p>
+                    </article>
+
+                    <!-- Complete Transcript Section (Q&A) -->
+                    <div class="bg-stone-100 dark:bg-stone-800/60 p-6 rounded-lg border border-stone-300 dark:border-stone-700">
+                        <div class="flex items-center gap-3 border-b-2 border-stone-800 dark:border-stone-400 pb-3 mb-6">
+                            <i class="fa-solid fa-comments text-2xl text-red-800 dark:text-red-400"></i>
+                            <div>
+                                <h3 class="font-header text-xl font-bold uppercase tracking-wider text-stone-900 dark:text-stone-100">Transkrip Wawancara Lengkap</h3>
+                                <p class="text-xs font-sans text-stone-600 dark:text-stone-400">Pewawancara: Syafika (11A) | Narasumber: Kak Boas (12M)</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6 font-sans text-sm sm:text-base">
+                            
+                            <!-- Transcript Item 1 -->
+                            <div class="space-y-2">
+                                <div class="bg-stone-200 dark:bg-stone-700 p-2.5 rounded font-semibold text-stone-900 dark:text-stone-100 flex items-start gap-2">
+                                    <span class="bg-red-800 text-white text-xs px-2 py-0.5 rounded uppercase shrink-0 mt-0.5">Syafika</span>
+                                    <span>Bagaimana perasaannya Kak Boas setelah memenangkan lomba akustik tingkat SMA ini?</span>
+                                </div>
+                                <div class="pl-4 border-l-2 border-red-800 text-stone-800 dark:text-stone-200 italic">
+                                    "Pastinya perasaan senang sih. Senang, terus rasa bahagia karena bisa membawa nama sekolah ke tingkat kabupaten. Dan telah berlomba lagi dari kabupaten dan menjuarai di kabupaten untuk lanjut ke provinsi lagi."
+                                </div>
+                            </div>
+
+                            <!-- Transcript Item 2 -->
+                            <div class="space-y-2">
+                                <div class="bg-stone-200 dark:bg-stone-700 p-2.5 rounded font-semibold text-stone-900 dark:text-stone-100 flex items-start gap-2">
+                                    <span class="bg-red-800 text-white text-xs px-2 py-0.5 rounded uppercase shrink-0 mt-0.5">Syafika</span>
+                                    <span>Siapa saja anggota tim yang mengikuti lomba tersebut?</span>
+                                </div>
+                                <div class="pl-4 border-l-2 border-red-800 text-stone-800 dark:text-stone-200 italic">
+                                    "Ada lima orang. Yang pertama Daniel Krey kelas 12B, Marcelino Marei kelas 12A, Juloi Sinai kelas 12M, Ones Bab kelas 12E, dan saya sendiri Adrianus Boas Uner kelas 12M juga."
+                                </div>
+                            </div>
+
+                            <!-- Transcript Item 3 -->
+                            <div class="space-y-2">
+                                <div class="bg-stone-200 dark:bg-stone-700 p-2.5 rounded font-semibold text-stone-900 dark:text-stone-100 flex items-start gap-2">
+                                    <span class="bg-red-800 text-white text-xs px-2 py-0.5 rounded uppercase shrink-0 mt-0.5">Syafika</span>
+                                    <span>Kapan lomba tersebut dilaksanakan?</span>
+                                </div>
+                                <div class="pl-4 border-l-2 border-red-800 text-stone-800 dark:text-stone-200 italic">
+                                    "Lomba dilaksanakan pada hari Kamis, bulan Juni 2026."
+                                </div>
+                            </div>
+
+                            <!-- Transcript Item 4 -->
+                            <div class="space-y-2">
+                                <div class="bg-stone-200 dark:bg-stone-700 p-2.5 rounded font-semibold text-stone-900 dark:text-stone-100 flex items-start gap-2">
+                                    <span class="bg-red-800 text-white text-xs px-2 py-0.5 rounded uppercase shrink-0 mt-0.5">Syafika</span>
+                                    <span>Di mana lomba tersebut diselenggarakan?</span>
+                                </div>
+                                <div class="pl-4 border-l-2 border-red-800 text-stone-800 dark:text-stone-200 italic">
+                                    "Kalau yang antar SMA dan kabupaten itu dilaksanakan di Reddoors."
+                                </div>
+                            </div>
+
+                            <!-- Transcript Item 5 -->
+                            <div class="space-y-2">
+                                <div class="bg-stone-200 dark:bg-stone-700 p-2.5 rounded font-semibold text-stone-900 dark:text-stone-100 flex items-start gap-2">
+                                    <span class="bg-red-800 text-white text-xs px-2 py-0.5 rounded uppercase shrink-0 mt-0.5">Syafika</span>
+                                    <span>Mengapa Kak Boas tertarik mengikuti lomba tersebut?</span>
+                                </div>
+                                <div class="pl-4 border-l-2 border-red-800 text-stone-800 dark:text-stone-200 italic">
+                                    "Mengikuti lomba tersebut tertarik karena yang pertama, saya suka musik. Terus yang kedua, ya kalau kau sudah dikatakan untuk mewakili sekolah, maka kau harus bersedia. Mau tidak mau harus bersedia, karena itu adalah tanggung jawab yang diberikan sekolah kepada kita siswa."
+                                </div>
+                            </div>
+
+                            <!-- Transcript Item 6 -->
+                            <div class="space-y-2">
+                                <div class="bg-stone-200 dark:bg-stone-700 p-2.5 rounded font-semibold text-stone-900 dark:text-stone-100 flex items-start gap-2">
+                                    <span class="bg-red-800 text-white text-xs px-2 py-0.5 rounded uppercase shrink-0 mt-0.5">Syafika</span>
+                                    <span>Bagaimana persiapan tim hingga berhasil menjadi juara, dan apa tantangan terbesarnya?</span>
+                                </div>
+                                <div class="pl-4 border-l-2 border-red-800 text-stone-800 dark:text-stone-200 italic">
+                                    "Persiapan dari tingkat kabupaten sampai provinsi itu sangat-sangat ekstrem! Mulai dari waktu latihan, pemantapan, hingga mengoordinasikan semua alat musik jadi satu. Yang paling susah adalah menggabungkan suara dan alat musik. Tantangan terbesar adalah lawan dari sekolah lain dan kabupaten lain."
+                                </div>
+                            </div>
+
+                            <!-- Transcript Item 7 -->
+                            <div class="space-y-2">
+                                <div class="bg-stone-200 dark:bg-stone-700 p-2.5 rounded font-semibold text-stone-900 dark:text-stone-100 flex items-start gap-2">
+                                    <span class="bg-red-800 text-white text-xs px-2 py-0.5 rounded uppercase shrink-0 mt-0.5">Syafika</span>
+                                    <span>Apa pesan Kak Boas kepada siswa lain yang ingin mengembangkan bakat musik?</span>
+                                </div>
+                                <div class="pl-4 border-l-2 border-red-800 text-stone-800 dark:text-stone-200 italic">
+                                    "Kedepannya lebih baik lagi, lebih berusaha lagi, lebih kerja keras lagi, latihan lebih banyak lagi biar bisa membawa nama sekolah kedepannya. Bisa juara lagi, bisa menang, dan bisa lebih bagus kedepannya!"
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Sidebar Content -->
+                <div class="space-y-6">
+                    
+                    <!-- Team Roster Card -->
+                    <div class="border-2 border-stone-800 dark:border-stone-600 p-5 bg-stone-50 dark:bg-stone-800 rounded-lg shadow-sm">
+                        <h3 class="font-header text-lg font-bold uppercase border-b-2 border-stone-800 dark:border-stone-400 pb-2 mb-4 text-stone-900 dark:text-stone-100 flex items-center gap-2">
+                            <i class="fa-solid fa-users text-red-800 dark:text-red-400"></i> Skuad Juara Akustik
+                        </h3>
+                        <ul class="space-y-3 font-sans text-sm">
+                            <li class="flex justify-between items-center border-b border-stone-200 dark:border-stone-700 pb-2">
+                                <span class="font-bold text-stone-900 dark:text-stone-100">Adrianus Boas Uner</span>
+                                <span class="bg-stone-200 dark:bg-stone-700 text-xs px-2 py-1 rounded font-mono">Kelas 12M</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-stone-200 dark:border-stone-700 pb-2">
+                                <span class="font-semibold">Daniel Krey</span>
+                                <span class="bg-stone-200 dark:bg-stone-700 text-xs px-2 py-1 rounded font-mono">Kelas 12B</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-stone-200 dark:border-stone-700 pb-2">
+                                <span class="font-semibold">Marcelino Marei</span>
+                                <span class="bg-stone-200 dark:bg-stone-700 text-xs px-2 py-1 rounded font-mono">Kelas 12A</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-stone-200 dark:border-stone-700 pb-2">
+                                <span class="font-semibold">Juloi Sinai</span>
+                                <span class="bg-stone-200 dark:bg-stone-700 text-xs px-2 py-1 rounded font-mono">Kelas 12M</span>
+                            </li>
+                            <li class="flex justify-between items-center pb-1">
+                                <span class="font-semibold">Ones Bab</span>
+                                <span class="bg-stone-200 dark:bg-stone-700 text-xs px-2 py-1 rounded font-mono">Kelas 12E</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Event Quick Facts Box -->
+                    <div class="bg-red-950 text-white p-5 rounded-lg shadow">
+                        <h3 class="font-header text-lg font-bold uppercase border-b border-red-700 pb-2 mb-3 tracking-wider text-amber-400">
+                            Fakta Singkat Lomba
+                        </h3>
+                        <div class="space-y-2.5 font-sans text-xs sm:text-sm">
+                            <div>
+                                <span class="text-stone-400 block uppercase text-[10px] tracking-widest">Tingkat Ajang:</span>
+                                <span class="font-semibold">Kabupaten &rarr; Menuju Provinsi</span>
+                            </div>
+                            <div>
+                                <span class="text-stone-400 block uppercase text-[10px] tracking-widest">Waktu Pelaksanaan:</span>
+                                <span class="font-semibold">Hari Kamis, Juni 2026</span>
+                            </div>
+                            <div>
+                                <span class="text-stone-400 block uppercase text-[10px] tracking-widest">Lokasi Lomba:</span>
+                                <span class="font-semibold">Reddoors</span>
+                            </div>
+                            <div>
+                                <span class="text-stone-400 block uppercase text-[10px] tracking-widest">Tantangan Utama:</span>
+                                <span class="font-semibold">Harmonisasi vokal & instrumen musik</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Editorial Note / Redaksi -->
+                    <div class="border border-stone-400 dark:border-stone-700 p-4 rounded text-xs font-sans bg-stone-100/80 dark:bg-stone-800/80">
+                        <h4 class="font-bold uppercase text-stone-900 dark:text-stone-100 mb-2 border-b border-stone-300 dark:border-stone-600 pb-1">
+                            Catatan Redaksi 11A
+                        </h4>
+                        <p class="text-stone-700 dark:text-stone-300 leading-relaxed italic">
+                            Laporan berita dan transkrip ini disusun untuk memenuhi tugas terstruktur mata pelajaran Bahasa Indonesia kelas 11A. Diharapkan dapat menjadi inspirasi semangat berkarya bagi seluruh siswa.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Interactive Comment / Teacher Review Section (No Print) -->
+            <div class="no-print mt-12 pt-8 border-t-2 border-stone-800 dark:border-stone-600 font-sans">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-header text-xl font-bold uppercase text-stone-900 dark:text-stone-100 flex items-center gap-2">
+                        <i class="fa-solid fa-pen-to-square text-red-800"></i> Kolom Penilaian & Tanggapan Guru / Teman
+                    </h3>
+                    <span id="commentCount" class="text-xs bg-stone-200 dark:bg-stone-700 px-2.5 py-1 rounded font-bold">1 Tanggapan</span>
+                </div>
+
+                <!-- Input Box -->
+                <form onsubmit="addComment(event)" class="mb-6 bg-stone-100 dark:bg-stone-800 p-4 rounded-lg border border-stone-300 dark:border-stone-700">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <input type="text" id="commenterName" placeholder="Nama Lengkap / Guru Pembimbing" required class="w-full px-3 py-2 text-sm rounded border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-red-800">
+                        <select id="commenterRole" class="w-full px-3 py-2 text-sm rounded border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100">
+                            <option value="Guru Bahasa Indonesia">Guru Bahasa Indonesia</option>
+                            <option value="Siswa Kelas 11A">Siswa / Teman Seperjuangan</option>
+                            <option value="Siswa Umum">Siswa Lain</option>
+                        </select>
+                    </div>
+                    <textarea id="commentText" rows="3" placeholder="Tuliskan apresiasi, saran, atau nilai evaluasi tugas di sini..." required class="w-full p-3 text-sm rounded border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 mb-3 focus:outline-none focus:ring-2 focus:ring-red-800"></textarea>
+                    <button type="submit" class="bg-red-800 hover:bg-red-900 text-white font-medium text-xs px-5 py-2.5 rounded transition shadow">
+                        <i class="fa-solid fa-paper-plane mr-1"></i> Kirim Tanggapan
+                    </button>
+                </form>
+
+                <!-- Comments List -->
+                <div id="commentsList" class="space-y-3">
+                    <!-- Default Initial Comment -->
+                    <div class="bg-white dark:bg-bg-stone-800 p-4 rounded border border-stone-200 dark:border-stone-700 shadow-sm">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold text-sm text-stone-900 dark:text-stone-100">Catatan Evaluasi Guru</span>
+                            <span class="text-[10px] bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-2 py-0.5 rounded font-semibold">Bahasa Indonesia</span>
+                        </div>
+                        <p class="text-xs text-stone-600 dark:text-stone-400 mb-2">"Struktur wawancara sangat lengkap (5W+1H) dan tata bahasa tercatat dengan rapi. Koran digital ini sangat kreatif!"</p>
+                        <span class="text-[10px] text-stone-400">Diunggah Otomatis Sistem Sistem Penilaian</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Newspaper -->
+            <div class="mt-12 pt-4 border-t border-stone-400 dark:border-stone-700 text-center text-xs font-sans text-stone-500 dark:text-stone-400 flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div>&copy; 2026 Gema Pelajar Digital - Tugas Bahasa Indonesia 11A</div>
+                <div>Diwawancarai oleh: <strong>Syafika</strong></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Theme Switcher Logic
+        function setTheme(theme) {
+            const body = document.getElementById('appBody');
+            const card = document.getElementById('newspaperCard');
+            const btnModern = document.getElementById('btn-modern');
+            const btnSepia = document.getElementById('btn-sepia');
+            const btnDark = document.getElementById('btn-dark');
+
+            // Reset theme classes
+            body.classList.remove('bg-newspaper-bg', 'text-newspaper-text', 'bg-sepia-bg', 'text-sepia-text', 'bg-stone-950', 'text-stone-100', 'dark');
+            card.classList.remove('bg-newspaper-bg', 'bg-sepia-card', 'bg-stone-900');
+
+            // Reset Buttons
+            [btnModern, btnSepia, btnDark].forEach(btn => {
+                btn.className = "px-2.5 py-1 rounded text-stone-300 hover:text-white transition";
+            });
+
+            if (theme === 'modern') {
+                body.classList.add('bg-newspaper-bg', 'text-newspaper-text');
+                card.classList.add('bg-newspaper-bg');
+                btnModern.className = "px-2.5 py-1 rounded text-white bg-red-800 font-medium transition";
+            } else if (theme === 'sepia') {
+                body.classList.add('bg-sepia-bg', 'text-sepia-text');
+                card.classList.add('bg-sepia-card');
+                btnSepia.className = "px-2.5 py-1 rounded text-stone-900 bg-amber-400 font-medium transition";
+            } else if (theme === 'dark') {
+                body.classList.add('bg-stone-950', 'text-stone-100', 'dark');
+                card.classList.add('bg-stone-900');
+                btnDark.className = "px-2.5 py-1 rounded text-white bg-red-800 font-medium transition";
+            }
+        }
+
+        // Simulated Audio Player Logic
+        let isPlaying = false;
+        let audioTimerInterval = null;
+        let seconds = 0;
+
+        function toggleAudio() {
+            const playIcon = document.getElementById('playIcon');
+            const visualizer = document.getElementById('audioVisualizer');
+            const timer = document.getElementById('audioTimer');
+
+            isPlaying = !isPlaying;
+
+            if (isPlaying) {
+                playIcon.className = "fa-solid fa-pause";
+                visualizer.classList.remove('hidden');
+                
+                // Start timer simulation
+                audioTimerInterval = setInterval(() => {
+                    seconds++;
+                    if (seconds > 165) seconds = 0; // reset at 2:45
+                    
+                    let mins = Math.floor(seconds / 60);
+                    let secs = seconds % 60;
+                    timer.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')} / 02:45`;
+                }, 1000);
+            } else {
+                playIcon.className = "fa-solid fa-play ml-1";
+                visualizer.classList.add('hidden');
+                clearInterval(audioTimerInterval);
+            }
+        }
+
+        // Add Comment Logic
+        let commentCount = 1;
+
+        function addComment(event) {
+            event.preventDefault();
+            const name = document.getElementById('commenterName').value.trim();
+            const role = document.getElementById('commenterRole').value;
+            const text = document.getElementById('commentText').value.trim();
+
+            if (!name || !text) return;
+
+            commentCount++;
+            document.getElementById('commentCount').innerText = `${commentCount} Tanggapan`;
+
+            const commentsList = document.getElementById('commentsList');
+            const newComment = document.createElement('div');
+            newComment.className = "bg-white dark:bg-stone-800 p-4 rounded border border-stone-200 dark:border-stone-700 shadow-sm animate-fade-in";
+            
+            newComment.innerHTML = `
+                <div class="flex justify-between items-center mb-1">
+                    <span class="font-bold text-sm text-stone-900 dark:text-stone-100">${escapeHtml(name)}</span>
+                    <span class="text-[10px] bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-200 px-2 py-0.5 rounded font-semibold">${escapeHtml(role)}</span>
+                </div>
+                <p class="text-xs text-stone-600 dark:text-stone-400 mb-2">"${escapeHtml(text)}"</p>
+                <span class="text-[10px] text-stone-400">Baru Saja</span>
+            `;
+
+            commentsList.prepend(newComment);
+
+            // Clear Form
+            document.getElementById('commenterName').value = '';
+            document.getElementById('commentText').value = '';
+        }
+
+        // Helper function to prevent XSS
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
+```
